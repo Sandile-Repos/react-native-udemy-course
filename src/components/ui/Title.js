@@ -1,23 +1,18 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import Colors from "../constants/Colors";
 
 export default function Title({ children }) {
-  return (
-    <View>
-      <Text style={styles.title}>{children}</Text>
-    </View>
-  );
+  return <Text style={styles.title}>{children}</Text>;
 }
 
 const styles = StyleSheet.create({
   title: {
-    color: Colors.accent500,
+    color: "white",
     fontSize: 24,
     fontWeight: "bold",
     textAlign: "center",
     borderWidth: 2,
-    borderColor: Colors.accent500,
+    borderColor: "white",
     padding: 12,
   },
 });

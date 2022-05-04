@@ -7,8 +7,8 @@ import {
   Pressable,
   Alert,
 } from "react-native";
-import PrimaryButton from "../components/PrimaryButton";
-import Colors from "../constants/Colors";
+import PrimaryButton from "../components/ui/PrimaryButton";
+import Colors from "../constants/colors";
 
 const StartGameScreen = ({ onPickedNumber }) => {
   const [enteredNumber, setEnteredNumber] = useState("");
