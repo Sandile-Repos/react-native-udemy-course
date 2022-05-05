@@ -1,9 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-export default function Title({ children }) {
+const Title = ({ children }) => {
   return <Text style={styles.title}>{children}</Text>;
-}
+};
+
+export default Title;
 
 const styles = StyleSheet.create({
   title: {
@@ -15,5 +17,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "white",
     padding: 12,
+    maxWidth: "80%",
+    width: 300,
   },
 });
