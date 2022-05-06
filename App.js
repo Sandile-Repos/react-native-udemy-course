@@ -8,6 +8,7 @@ const Stack = createNativeStackNavigator();
 
 import { StatusBar } from "expo-status-bar";
 import CategoriesScreen from "./src/screens/CategoriesScreen";
+import MealsOverviewScreen from "./src/screens/MealsOverviewScreen";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="MealsCategories" component={CategoriesScreen} />
+          <Stack.Screen name="MealsOverview" component={MealsOverviewScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
