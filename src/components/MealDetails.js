@@ -10,7 +10,7 @@ const MealDetails = ({
 }) => {
   return (
     <View>
-      <View style={[styles.detail, style]}>
+      <View style={[styles.details, style]}>
         <Text style={[styles.detailItem, textStyle]}>{duration}m</Text>
         <Text style={[styles.detailItem, textStyle]}>
           {complexity.toUpperCase()}

@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Button } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 
@@ -40,7 +40,16 @@ export default function App() {
             //   };
             // }}
           />
-          <Stack.Screen name="MealDetail" component={MealDetailsScreen} />
+          <Stack.Screen
+            name="MealDetail"
+            component={MealDetailsScreen}
+            // options={{
+            //   // Ok if you not going to interact with the underlying component
+            //   headerRight: () => {
+            //     return <Button title="Tap me!" />;
+            //   },
+            // }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
