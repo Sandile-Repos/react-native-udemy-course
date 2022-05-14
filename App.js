@@ -1,56 +1,49 @@
-import { View, StyleSheet, Text, Button } from "react-native";
-
+import "react-native-gesture-handler";
+import { View, StyleSheet, Text, Button, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Ionicons } from "@expo/vector-icons";
 
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+const Drawer = createDrawerNavigator();
 
-const Stack = createNativeStackNavigator();
-
-import { StatusBar } from "expo-status-bar";
-import CategoriesScreen from "./src/screens/CategoriesScreen";
-import MealsOverviewScreen from "./src/screens/MealsOverviewScreen";
-import MealDetailsScreen from "./src/screens/MealDetailsScreen";
+import WelcomeScreen from "./src/screens/WelcomeScreen";
+import UserScreen from "./src/screens/UserScreen";
 
 export default function App() {
   return (
     <>
       <StatusBar style="light" />
       <NavigationContainer>
-        <Stack.Navigator
+        <Drawer.Navigator
           screenOptions={{
-            headerStyle: { backgroundColor: "#351401" },
+            headerStyle: { backgroundColor: "#3c0a6b" },
             headerTintColor: "white",
-            contentStyle: { backgroundColor: "#3f2f25" },
+            drawerActiveBackgroundColor: "#f0e1ff",
+            drawerActiveTintColor: "#3c0a6b",
+            // drawerInactiveTintColor: "green",
+            // drawerStyle: { backgroundColor: "#ccc" },
           }}
         >
-          <Stack.Screen
-            name="MealsCategories"
-            component={CategoriesScreen}
+          <Drawer.Screen
+            name="Welcome"
+            component={WelcomeScreen}
             options={{
-              title: "All Categories",
+              drawerLabel: "Welcome Screen",
+              drawerIcon: ({ color, size }) => (
+                <Ionicons size={size} name="home" color={color} />
+              ),
             }}
           />
-          <Stack.Screen
-            name="MealsOverview"
-            component={MealsOverviewScreen}
-            // options={({ route, navigation }) => {
-            //   const catId = route.params.categoryId;
-            //   return {
-            //     title: catId,
-            //   };
-            // }}
+          <Drawer.Screen
+            name="User"
+            component={UserScreen}
+            options={{
+              drawerIcon: ({ color, size }) => (
+                <Ionicons size={size} name="person" color={color} />
+              ),
+            }}
           />
-          <Stack.Screen
-            name="MealDetail"
-            component={MealDetailsScreen}
-            // options={{
-            //   // Ok if you not going to interact with the underlying component
-            //   headerRight: () => {
-            //     return <Button title="Tap me!" />;
-            //   },
-            // }}
-          />
-        </Stack.Navigator>
+        </Drawer.Navigator>
       </NavigationContainer>
     </>
   );
