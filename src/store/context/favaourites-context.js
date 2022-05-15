@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-const FavouritesContext = createContext({
+export const FavouritesContext = createContext({
   ids: [],
   addFavourite: (id) => {},
   removeFavourite: (id) => {},
