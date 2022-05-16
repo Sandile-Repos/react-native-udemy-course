@@ -3,7 +3,7 @@ import { StyleSheet, Text, TextInput, View } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 
 // const Input = ({label, type, maxLength}) => {
-const Input = ({ label, textInputConfig }) => {
+const Input = ({ label, style, textInputConfig }) => {
   let inputStyles = [styles.input];
 
   if (textInputConfig && textInputConfig.multiline) {
@@ -11,7 +11,7 @@ const Input = ({ label, textInputConfig }) => {
   }
 
   return (
-    <View style={styles.inputContainer}>
+    <View style={[styles.inputContainer, style]}>
       <Text style={styles.label}>{label}</Text>
       {/* <TextInput keyboardType={type} maxLength={maxLength} /> */}
       <TextInput style={inputStyles} {...textInputConfig} />
@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginHorizontal: 4,
     marginVertical: 8,
+    // flex: 1,
   },
   label: {
     fontSize: 12,
