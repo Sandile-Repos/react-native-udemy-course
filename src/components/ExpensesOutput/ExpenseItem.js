@@ -1,40 +1,63 @@
 import React from "react";
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import { StyleSheet, Text, View, Pressable, Platform } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 import { getFormattedDate } from "../../util/date";
 const ExpenseItem = ({ description, amount, date }) => {
+  const expensePressHandler = () => {};
   return (
-    <Pressable>
-      <View style={styles.expenseItem}>
-        <View>
-          <Text style={[styles.textBase, styles.description]}>
-            {description}
-          </Text>
-          <Text style={styles.textBase}>{getFormattedDate(date)}</Text>
+    <View style={styles.buttonContainer}>
+      <Pressable
+        onPress={expensePressHandler}
+        style={({ pressed }) => pressed && styles.pressed}
+        android_ripple={{ color: GlobalStyles.colors.primary800 }}
+      >
+        <View style={styles.expenseItem}>
+          <View>
+            <Text style={[styles.textBase, styles.description]}>
+              {description}
+            </Text>
+            <Text style={styles.textBase}>{getFormattedDate(date)}</Text>
+          </View>
+          <View style={styles.amountContainer}>
+            <Text style={styles.amount}>{amount.toFixed(2)}</Text>
+          </View>
         </View>
-        <View style={styles.amountContainer}>
-          <Text style={styles.amount}>{amount.toFixed(2)}</Text>
-        </View>
-      </View>
-    </Pressable>
+      </Pressable>
+    </View>
   );
 };
 
 export default ExpenseItem;
 
 const styles = StyleSheet.create({
-  expenseItem: {
-    padding: 12,
+  buttonContainer: {
     marginVertical: 8,
-    backgroundColor: GlobalStyles.colors.primary500,
-    flexDirection: "row",
-    justifyContent: "space-between",
+    backgroundColor: GlobalStyles.colors.primary800,
+    borderRadius: 8,
     borderRadius: 6,
     elevation: 3,
     shadowColor: GlobalStyles.colors.gray500,
     shadowOffset: { width: 1, height: 1 },
     shadowRadius: 4,
     shadowOpacity: 0.4,
+    overflow: Platform.OS === "android" ? "hidden" : "visible",
+  },
+  pressed: {
+    opacity: 0.75,
+  },
+  expenseItem: {
+    padding: 12,
+    // marginVertical: 8,
+    backgroundColor: GlobalStyles.colors.primary500,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderRadius: 6,
+    // elevation: 3,
+    // shadowColor: GlobalStyles.colors.gray500,
+    // shadowOffset: { width: 1, height: 1 },
+    // shadowRadius: 4,
+    // shadowOpacity: 0.4,
+    overflow: "hidden",
   },
   textBase: {
     color: GlobalStyles.colors.primary50,
