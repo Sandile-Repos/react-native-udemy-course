@@ -1,25 +1,29 @@
 import { useContext, useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import ExpensesOutput from "../components/ExpensesOutput/ExpensesOutput";
+import LoadingOverlay from "../components/UI/LoadingOverlay";
 import { ExpensesContext } from "../store/expenses-context";
 import { getDateMinusDays } from "../util/date";
 import { fetchExpenses } from "../util/http";
 
 const RecentExpenses = () => {
+  const [isFetching, setIsFetching] = useState(true);
   const expensesCtx = useContext(ExpensesContext);
-
-  // const [fetchedExpenses, setFetchedExpenses] = useState([]);
 
   useEffect(() => {
     async function getExpenses() {
+      setIsFetching(true);
       const expenses = await fetchExpenses();
-      // setFetchedExpenses(expenses);
+      setIsFetching(false);
       expensesCtx.setExpenses(expenses);
     }
     getExpenses();
   }, []);
 
-  // const recentExpenses = fetchedExpenses.filter((expense) => {
+  if (isFetching) {
+    return <LoadingOverlay />;
+  }
+
   const recentExpenses = expensesCtx.expenses.filter((expense) => {
     const today = new Date();
     const sevenDaysAgo = getDateMinusDays(today, 7);
