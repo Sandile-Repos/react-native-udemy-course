@@ -26,17 +26,6 @@ const ExpensesOverview = () => {
         tabBarLabelStyle: {
           fontSize: 14,
         },
-        headerLeft: ({ tintColor }) => (
-          <IconButton
-            type="antdesign"
-            icon="addusergroup"
-            size={24}
-            color={tintColor}
-            onPress={() => {
-              navigation.navigate("ManageExpense");
-            }}
-          />
-        ),
         headerRight: ({ tintColor }) => (
           <IconButton
             icon="add"
