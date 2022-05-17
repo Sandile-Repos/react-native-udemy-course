@@ -2,10 +2,10 @@ import axios from "axios";
 
 const BACKEND_URL = "https://rn-backend-5c142-default-rtdb.firebaseio.com";
 
-export const storeExpense = (expenseData) => {
+export const storeExpenses = (expenseData) => {
   axios.post(BACKEND_URL + "/expenses.json", expenseData);
 };
-export const fetchExpense = async () => {
+export const fetchExpenses = async () => {
   const response = await axios.get(BACKEND_URL + "/expenses.json");
   const expenses = [];
 
