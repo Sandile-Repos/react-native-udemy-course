@@ -15,7 +15,7 @@ const RecentExpenses = () => {
     <ExpensesOutput
       expenses={recentExpenses}
       expensesPeriod="Last 7 days"
-      fallbackText="No expense on registered for the last 7 days"
+      fallbackText="No expense was registered for the last 7 days"
     />
   );
 };
