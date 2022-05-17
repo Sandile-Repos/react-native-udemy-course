@@ -7,7 +7,7 @@ import { ExpensesContext } from "../store/expenses-context";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
 import { storeExpenses, updateExpenses, deleteExpenses } from "../util/http";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
-
+import ErrorOverlay from "../components/UI/ErrorOverlay";
 const ManageExpense = ({ route, navigation }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState();
@@ -57,12 +57,9 @@ const ManageExpense = ({ route, navigation }) => {
       setIsSubmitting(false);
     }
   };
-  const errorHandler = () => {
-    setError(null);
-  };
 
   if (error && !isSubmitting) {
-    return <ErrorOverlay message={error} onConfirm={errorHandler} />;
+    return <ErrorOverlay message={error} />;
   }
 
   if (isSubmitting) {
