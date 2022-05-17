@@ -1,11 +1,19 @@
 import React from "react";
 import { StyleSheet, Text, View, Pressable } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-const IconButton = ({ icon, size, color, onPress }) => {
+import { Ionicons, AntDesign } from "@expo/vector-icons";
+
+const IconButton = ({ icon, size, color, onPress, type }) => {
+  let IconType = Ionicons;
+  if (type === "antdesign") {
+    IconType = AntDesign;
+  }
   return (
-    <Pressable onPress={onPress} style={(pressed) => pressed && styles.pressed}>
+    <Pressable
+      onPress={onPress}
+      style={({ pressed }) => pressed && styles.pressed}
+    >
       <View style={styles.buttonContainer}>
-        <Ionicons name={icon} size={size} color={color} />
+        <IconType name={icon} size={size} color={color} />
       </View>
     </Pressable>
   );
