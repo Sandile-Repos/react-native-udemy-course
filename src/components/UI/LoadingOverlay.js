@@ -1,25 +1,25 @@
-import React from "react";
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
-import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
-import { GlobalStyles } from "../constants/styles";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 
-const LoadingOverlay = () => {
+function LoadingOverlay({ message }) {
   return (
-    <View style={styles.container}>
-      <ActivityIndicator size="large" color="white" />
+    <View style={styles.rootContainer}>
+      <Text style={styles.message}>{message}</Text>
+      <ActivityIndicator size="large" />
     </View>
   );
-};
+}
 
 export default LoadingOverlay;
 
 const styles = StyleSheet.create({
-  container: {
+  rootContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-
-    padding: 24,
-    backgroundColor: GlobalStyles.colors.primary700,
+    padding: 32,
+  },
+  message: {
+    fontSize: 16,
+    marginBottom: 12,
   },
 });
