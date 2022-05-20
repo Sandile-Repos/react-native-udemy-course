@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, FlatList } from "react-native";
 
-import PlaceItem from "./PaceItem";
+import PlaceItem from "./PlaceItem";
 const PlacesList = ({ places }) => {
   if (!places || places.length === 0) {
     <View style={styles.fallBackContainer}>
