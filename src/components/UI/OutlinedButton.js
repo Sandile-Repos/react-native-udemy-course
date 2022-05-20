@@ -1,10 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { Colors } from "../../../constants/colors";
 
-const OulinedButton = ({ onPress, icon, children }) => {
+const OutlinedButton = ({ onPress, icon, children }) => {
   return (
     <Pressable
       style={({ pressed }) => [styles.button, pressed && styles.pressed]}
@@ -21,7 +21,7 @@ const OulinedButton = ({ onPress, icon, children }) => {
   );
 };
 
-export default OulinedButton;
+export default OutlinedButton;
 
 const styles = StyleSheet.create({
   button: {

@@ -11,17 +11,17 @@ import OutlinedButton from "../UI/OutlinedButton";
 const ImagePicker = () => {
   const [pickedImage, setPickedImage] = useState();
 
-  const [CameraPermissionsInformation, requestPermission] =
+  const [cameraPermissionInformation, requestPermission] =
     useCameraPermissions();
 
   const verifyPermissions = async () => {
-    if (CameraPermissionsInformation.status === PermissionStatus.UNDETERMINED) {
+    if (cameraPermissionInformation.status === PermissionStatus.UNDETERMINED) {
       const permissionResponse = await requestPermission();
 
       return permissionResponse.granted;
     }
 
-    if (CameraPermissionsInformation.status === PermissionStatus.DENIED) {
+    if (cameraPermissionInformation.status === PermissionStatus.DENIED) {
       Alert.alert(
         "Insufficient Permissions",
         "You need to grant camera permissions to use this app"
