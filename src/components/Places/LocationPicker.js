@@ -4,7 +4,9 @@ import {
   getCurrentPositionAsync,
   useForegroundPermissions,
   PermissionStatus,
+  LocationAccuracy
 } from "expo-location";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
 import OutlinedButton from "../UI/OutlinedButton";
 import { Colors } from "../../../constants/colors";
@@ -13,6 +15,7 @@ import { getMapPreview } from "../../../util/location";
 const LocationPicker = () => {
   const [pickedLocation, setPickedLocation] = useState(null);
 
+  const navigation = useNavigation()
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
 
@@ -40,13 +43,21 @@ const LocationPicker = () => {
     if (!hasPermission) {
       return;
     }
-    const location = await getCurrentPositionAsync();
+    const location = await getCurrentPositionAsync(
+      // {
+      //   accuracy: LocationAccuracy.Highest ,
+      //   maximumAge: 10000,
+      //   timeout: 5000
+      // }
+    );
     setPickedLocation({
       lat: location.coords.latitude,
       lng: location.coords.longitude,
-    });
+    })
   };
-  const pickOnMapHandler = () => {};
+  const pickOnMapHandler = () => {
+    navigation.navigate('Map')
+  };
   let locationPreview = <Text>No location picked yet..</Text>;
 
   if (pickedLocation) {
@@ -83,6 +94,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: Colors.primary100,
     borderRadius: 4,
+    overflow:'hidden'
   },
   actions: {
     flexDirection: "row",
@@ -92,5 +104,6 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
+    // borderRadius:4
   },
 });

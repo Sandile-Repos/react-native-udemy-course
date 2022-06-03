@@ -34,7 +34,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.primary500,
   },
-  pressed: { opacity: 0.7 },
+  pressed: { 
+    opacity: 0.7 
+  },
   icon: {
     marginLeft: 6,
   },
