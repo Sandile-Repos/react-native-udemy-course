@@ -1,14 +1,15 @@
 import React from "react";
 import { Pressable, StyleSheet, Text, View, Image } from "react-native";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 const PaceItem = ({ place, onSelect }) => {
   return (
-    <Pressable onPress={onSelect}>
+    <Pressable style={({pressed})=>[styles.item, pressed && styles.pressed]} onPress={onSelect}>
       <View>
-        <Image source={{ uri: place.imageUrl && place.imageUrl }} />
-        <View>
-          <Text>{place.title}</Text>
-          <Text>{place.address}</Text>
+        <Image style={styles.image} source={{ uri: place.imageUrl && place.imageUrl }} />
+        <View style={styles.info}>
+          <Text style={styles.title}>{place.title}</Text>
+          <Text styele={styles.address}>{place.address}</Text>
         </View>
       </View>
     </Pressable>
@@ -17,4 +18,40 @@ const PaceItem = ({ place, onSelect }) => {
 
 export default PaceItem;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  item:{
+    flexDirection:"row",
+    alignItems:"flex-start",
+    borderRadius:6,
+    marginVertical:12,
+    backgroundColor:Colors.primary500,
+    elevation:2,
+        shadowColor:'black',
+        shadowOffset: {width:1, height:1},
+        shadowOpacity:0.15,
+        shadowRadius:2,
+      
+  },
+  pressed:{
+    opacity:0.9
+  },
+  image:{
+    flex:1,
+    borderBottomLeftRadius:4,
+    borderTopLeftRadius:4,
+    height:100
+  },
+  info:{
+    flex:2,
+    padding:12, 
+  },
+  title:{
+    fontWeight:'bold',
+    fontSize:18,
+    color:Colors.gray700
+  },
+  address:{
+    fontSize:12,
+    color:Colors.gray700
+  }
+});
