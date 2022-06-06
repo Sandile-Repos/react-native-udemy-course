@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Alert, Image, Text } from "react-native";
 import {
   getCurrentPositionAsync,
@@ -6,7 +6,7 @@ import {
   PermissionStatus,
   LocationAccuracy
 } from "expo-location";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { useNavigation , useRoute, useIsFocused} from "@react-navigation/native";
 
 import OutlinedButton from "../UI/OutlinedButton";
 import { Colors } from "../../../constants/colors";
@@ -16,8 +16,27 @@ const LocationPicker = () => {
   const [pickedLocation, setPickedLocation] = useState(null);
 
   const navigation = useNavigation()
-  const [locationPermissionInformation, requestPermission] =
-    useForegroundPermissions();
+  const route = useRoute()
+  const isFocused = useIsFocused()
+
+  const [locationPermissionInformation, requestPermission] = useForegroundPermissions();
+ 
+  // const mapPickedLocation = route.params ? {lat:route.params.pickedLat, lng: route.params.pickedLng} : null
+  // const mapPickedLocation = route.params && {lat:route.params.pickedLat, lng: route.params.pickedLng}
+
+  // useEffect(() => {
+  //   if(mapPickedLocation){
+  //     setPickedLocation(mapPickedLocation)
+  //   }
+  // }, [mapPickedLocation])
+
+  useEffect(() => {
+    const mapPickedLocation = route.params && {lat:route.params.pickedLat, lng: route.params.pickedLng}
+    if(mapPickedLocation){
+      setPickedLocation(mapPickedLocation)
+    }
+  }, [route, isFocused])
+  
 
   const verifyPermissions = async () => {
     if (
@@ -44,11 +63,11 @@ const LocationPicker = () => {
       return;
     }
     const location = await getCurrentPositionAsync(
-      // {
-      //   accuracy: LocationAccuracy.Highest ,
-      //   maximumAge: 10000,
-      //   timeout: 5000
-      // }
+      {
+        accuracy: LocationAccuracy.Highest ,
+        maximumAge: 10000,
+        timeout: 5000
+      }
     );
     setPickedLocation({
       lat: location.coords.latitude,
