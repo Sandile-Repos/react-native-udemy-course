@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { StyleSheet, Text, TextInput, ScrollView } from "react-native";
+import { StyleSheet, Text, TextInput, ScrollView, View } from "react-native";
 import { Colors } from "../../constants/colors";
 import ImagePicker from "./Places/ImagePicker";
 import LocationPicker from "./Places/LocationPicker";
@@ -31,12 +31,15 @@ onCreatePlace(placeData)
 
   return (
     <ScrollView style={styles.form}>
+      <View>
+        
       <Text style={styles.label}>Title</Text>
       <TextInput
         style={styles.input}
         value={enteredTile}
         onChangeText={changeTitleHandler}
-      />
+        />
+      </View>
       <ImagePicker onTakeImage={takeImageHandler}/>
       <LocationPicker onPickLocation={pickedLocationHandler}/>
       <Button onPress={SavePlaceHandler}>Add Place</Button>

@@ -41,7 +41,7 @@ const LocationPicker = ({onPickLocation}) => {
     const handleLocation = async () => {
 
       if(pickedLocation){
-       const address =  getAddress(pickedLocation.lat, pickedLocation.lng)
+       const address = await getAddress(pickedLocation.lat, pickedLocation.lng)
         onPickLocation({...pickedLocation, address:address})
      }
     }
