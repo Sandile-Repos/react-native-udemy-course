@@ -21,3 +21,34 @@ export const init = () => {
     })
     return promise
 }
+
+export const insertPlace = (place) => {
+   const promise = new Promise((resolve, reject) => {
+       database.transaction((tx) => {
+           tx.executeSql(`
+             INSERT INTO places (
+                 title,
+                 imageUri,
+                 address,
+                 lat,
+                 lng) VALUES (?, ?, ?, ? ,?)`,
+                 [
+                    place.title, 
+                    place.imageUri,
+                    place.address,
+                    place.lat,
+                    place.lng
+                ],
+                 (_, result) => {
+                     console.log(result);
+                     resolve()
+                    },
+                 (_, error) => {
+                    console.log(error);
+                     reject(error)
+                    }
+            );
+       })
+    })
+    return promise
+}
