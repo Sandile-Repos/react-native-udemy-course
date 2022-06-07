@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { StyleSheet, Text, View,  } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AllPlaces from "./src/screens/AllPlaces";
@@ -7,10 +8,26 @@ import AddPlace from "./src/screens/AddPlace";
 import Map from "./src/screens/Map";
 import IconButton from "./src/components/UI/IconButton";
 import { Colors } from "./constants/colors";
+import { init } from "./util/database";
+import AppLoading from "expo-app-loading";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [dbInitialized, setDbInitialized] = useState(false)
+
+useEffect (() => {
+  init().then(()=>{
+    setDbInitialized(true)
+  }).catch((error)=>{
+    console.log(error);
+  })
+},[])
+
+if(!dbInitialized){
+  return <AppLoading/>
+}
+  
   return (
     <>
       <StatusBar style="light" />
