@@ -47,7 +47,7 @@ export const insertPlace = (place) => {
           place.location.lng,
         ],
         (_, result) => {
-          console.log(result);
+          // console.log(result);
           resolve(result);
         },
         (_, error) => {

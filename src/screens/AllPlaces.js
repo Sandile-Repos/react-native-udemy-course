@@ -11,7 +11,6 @@ const AllPlaces = ({ route }) => {
   useEffect(() => {
     const loadedPlaces = async () => {
       const places = await fetchPlaces();
-      console.log("kii", places);
       setLoadedPlaces(places);
     };
 
