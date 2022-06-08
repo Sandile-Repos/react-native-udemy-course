@@ -5,8 +5,8 @@ import IconButton from '../components/UI/IconButton'
 
 const Map = ({navigation,route}) => {
     const initialLocation = route.params && {
-        latitude: route.params.initialLat,
-        longitude: route.params.initialLng,
+        lat: route.params.initialLat,
+        lng: route.params.initialLng,
     }
 
     const [selectedLocation, setSelectedLocation] = useState(initialLocation)
