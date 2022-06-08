@@ -6,7 +6,7 @@ const PaceItem = ({ place, onSelect }) => {
   return (
     <Pressable
       style={({ pressed }) => [styles.item, pressed && styles.pressed]}
-      onPress={onSelect}
+      onPress={onSelect.bind(this, place.id)}
     >
       <Image
         style={styles.image}

@@ -10,6 +10,7 @@ import IconButton from "./src/components/UI/IconButton";
 import { Colors } from "./constants/colors";
 import { init } from "./util/database";
 import AppLoading from "expo-app-loading";
+import PlaceDetails from "./src/screens/PlaceDetails";
 
 const Stack = createNativeStackNavigator();
 
@@ -64,6 +65,10 @@ if(!dbInitialized){
           <Stack.Screen
             name="Map"
             component={Map}
+          />
+          <Stack.Screen
+            name="PlaceDetails"
+            component={PlaceDetails}
           />
         </Stack.Navigator>
       </NavigationContainer>
