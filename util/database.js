@@ -37,8 +37,8 @@ export const insertPlace = (place) => {
                     place.title, 
                     place.imageUri,
                     place.address,
-                    place.lat,
-                    place.lng
+                    place.location.lat,
+                    place.location.lng
                 ],
                  (_, result) => {
                      console.log(result);
