@@ -4,23 +4,21 @@ import { StyleSheet, Text, View } from "react-native";
 import PlacesList from "../components/Places/PlacesList";
 import { fetchPlaces } from "../../util/database";
 
-
-const AllPlaces = ({route}) => {
-const [loadedPlaces, setLoadedPlaces] = useState([])
-  const isFocused = useIsFocused()
+const AllPlaces = ({ route }) => {
+  const [loadedPlaces, setLoadedPlaces] = useState([]);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
+    const loadedPlaces = async () => {
+      const places = await fetchPlaces();
+      setLoadedPlaces(places);
+    };
 
- const loadedPlaces = async() =>{
-   const places = await fetchPlaces()
-   setLoadedPlaces(places)
- }
-
-  if(isFocused && route.params){
-    loadedPlaces()
-    // setLoadedPlaces(curPlaces => [...curPlaces, route.params.place])
-  }
-  }, [isFocused])
+    if (isFocused && route.params) {
+      loadedPlaces();
+      // setLoadedPlaces(curPlaces => [...curPlaces, route.params.place])
+    }
+  }, [isFocused]);
 
   return <PlacesList places={loadedPlaces} />;
 };

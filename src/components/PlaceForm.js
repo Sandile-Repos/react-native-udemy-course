@@ -4,44 +4,42 @@ import { Colors } from "../../constants/colors";
 import ImagePicker from "./Places/ImagePicker";
 import LocationPicker from "./Places/LocationPicker";
 import Button from "./UI/Button";
-import {Place} from '../models/place'
+import { Place } from "../models/place";
 
-const PlaceForm = ({onCreatePlace}) => {
+const PlaceForm = ({ onCreatePlace }) => {
   const [enteredTile, setEnteredTile] = useState("");
   const [selectedImage, setSelectedImage] = useState();
   const [pickedLocation, setPickedLocation] = useState();
-  
+
   const changeTitleHandler = (enteredText) => {
     setEnteredTile(enteredText);
   };
 
-  const takeImageHandler = (imageUri)=>{
-    setSelectedImage(imageUri)
-  }
+  const takeImageHandler = (imageUri) => {
+    setSelectedImage(imageUri);
+  };
 
-  const pickedLocationHandler = useCallback((location)=>{
-    setPickedLocation(location)
-  },[])
+  const pickedLocationHandler = useCallback((location) => {
+    setPickedLocation(location);
+  }, []);
 
-const SavePlaceHandler = () => {
-const placeData = new Place(enteredTile, selectedImage, pickedLocation)
-onCreatePlace(placeData)
-
-}
+  const SavePlaceHandler = () => {
+    const placeData = new Place(enteredTile, selectedImage, pickedLocation);
+    onCreatePlace(placeData);
+  };
 
   return (
     <ScrollView style={styles.form}>
       <View>
-        
-      <Text style={styles.label}>Title</Text>
-      <TextInput
-        style={styles.input}
-        value={enteredTile}
-        onChangeText={changeTitleHandler}
+        <Text style={styles.label}>Title</Text>
+        <TextInput
+          style={styles.input}
+          value={enteredTile}
+          onChangeText={changeTitleHandler}
         />
       </View>
-      <ImagePicker onTakeImage={takeImageHandler}/>
-      <LocationPicker onPickLocation={pickedLocationHandler}/>
+      <ImagePicker onTakeImage={takeImageHandler} />
+      <LocationPicker onPickLocation={pickedLocationHandler} />
       <Button onPress={SavePlaceHandler}>Add Place</Button>
     </ScrollView>
   );
