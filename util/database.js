@@ -59,7 +59,7 @@ export const insertPlace = (place) => {
   return promise;
 };
 
-export const fetchPlaces = (place) => {
+export const fetchPlaces = () => {
   const promise = new Promise((resolve, reject) => {
     database.transaction((tx) => {
       tx.executeSql(
@@ -79,6 +79,25 @@ export const fetchPlaces = (place) => {
             );
           }
           resolve(places);
+        },
+        (_, error) => {
+          reject(error);
+        }
+      );
+    });
+  });
+  return promise;
+};
+
+export const fetchPlaceDetails = (id) => {
+  const promise = new Promise((resolve, reject) => {
+    database.transaction((tx) => {
+      tx.executeSql(
+        'SELECT * FROM places WHERE id = ?',
+        [id],
+        (_, result) => {
+          // console.log(result)
+          resolve(result.rows._array[0]);
         },
         (_, error) => {
           reject(error);

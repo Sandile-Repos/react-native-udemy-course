@@ -68,6 +68,9 @@ if(!dbInitialized){
           />
           <Stack.Screen
             name="PlaceDetails"
+            options={{
+              title:'Loading Place....'
+            }}
             component={PlaceDetails}
           />
         </Stack.Navigator>
